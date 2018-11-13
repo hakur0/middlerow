@@ -1,0 +1,56 @@
+// Media query mixin based on bootstrap 3's queries
+// Default behaviour is to generate a media query that applies to only one breakpoint
+// If a $max value is provided, a min->max media query is generated
+
+$xs-max: 766px;
+$sm-max: 999px;
+$md-max: 1249px;
+$lg-max: 1499px;
+
+$sm-min: 767px;
+$md-min: 1000px;
+$lg-min: 1250px;
+$xl-min: 1500px;
+
+@mixin media($size, $max: 'none'){
+  @if $max == 'none'{
+    @if $size == xs{
+      @media screen and (max-width: $xs-max){@content}
+    }
+    @else if $size == sm{
+      @media screen and (min-width: $sm-min) and (max-width: $sm-max){@content}
+    }
+    @else if $size == md{
+      @media screen and (min-width: $md-min) and (max-width: $md-max){@content}
+    }
+    @else if $size == lg{
+      @media screen and (min-width: $lg-min) and (max-width: $lg-max){@content}
+    }
+    @else if $size == xl{
+      @media screen and (min-width: $xl-min){@content}
+    }
+  }@else{
+    $minimum: 0;
+    $maximum: 0;
+    @if $size == sm{$minimum: $sm-min}
+    @else if $size == md{$minimum: $md-min}
+    @else if $size == lg{$minimum: $lg-min}
+
+    @if $max == sm{$maximum: $sm-max}
+    @else if $max == md{$maximum: $md-max}
+    @else if $max == lg{$maximum: $lg-max}
+
+    @if $max == xl{
+      // If the $max value is XL, it means that the query have no maximum width; eg: target tablets and bigger screens
+      @media screen and (min-width: $minimum){@content}
+    }@else{
+      @if $size == xs{
+        // Else, if the $size value is XS, it means that the query works on everything up to the $max size
+        @media screen and (max-width: $maximum){@content}
+      }@else{
+        // Finally, if $size is not XS and $max is not XL, the query must target everything between $size and $max
+        @media screen and (min-width: $minimum) and (max-width: $maximum){@content}
+      }
+    }
+  }
+}

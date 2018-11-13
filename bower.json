@@ -1,0 +1,23 @@
+{
+  "name": "middlerow",
+  "description": "PWA para o teste da Agenda Edu",
+  "main": "index.js",
+  "authors": [
+    "Lucas Varela"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.7.5",
+    "bootstrap": "3"
+  }
+}
