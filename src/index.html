@@ -2,7 +2,7 @@
 <html lang="pt-br" ng-app="middlerow">
 <head>
     <meta charset="UTF-8">
-    <title>Middle Row</title>
+    <title>MiddleRow</title>
     <!--build:css middlerow.min.css-->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="app/scss/middlerow.css">
@@ -17,11 +17,17 @@
 
     <!--Middle Row-->
     <script src="app/middlerow.js"></script>
-    <script src="app/components/header/header.component.js"></script>
-    <script src="app/components/header/header.controller.js"></script>
+    <script src="app/core/constants.js"></script>
+    <script src="app/core/interceptors.js"></script>
+    <script src="app/core/tmdb.service.js"></script>
+    <script src="app/header/header.component.js"></script>
+    <script src="app/header/header.controller.js"></script>
+    <script src="app/header/searchbar/searchbar.component.js"></script>
+    <script src="app/header/searchbar/searchbar.controller.js"></script>
+    <script src="app/movies/movie.factory.js"></script>
     <!-- endbuild -->
 </head>
 <body>
-    <app-header class="o-header container"></app-header>
+    <app-header class="o-header"></app-header>
 </body>
 </html>

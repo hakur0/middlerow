@@ -1,0 +1,24 @@
+.o-header{
+  display: block;
+  height: 62px;
+  background: hsla(346, 100%, 99%, 1);
+  border-bottom: 2px solid hsla(346, 100%, 92%, 1);
+
+  & > .container{
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.o-header__logo{
+  height: 42px;
+}
+
+.o-header__logo-type{
+  padding-left: 1rem;
+  font-family: $font-pridi;
+  font-size: 2rem;
+  font-weight: 500;
+  color: $color-main;
+}

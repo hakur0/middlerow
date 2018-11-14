@@ -1,0 +1,19 @@
+<div class="o-search-bar__icon" ng-class="{'is-loading': SearchBar.model.is_loading}"></div>
+<input class="o-search-bar__input"
+       type="search"
+       placeholder="Busque por filmes..."
+       ng-model="SearchBar.model.query"
+       ng-model-options="{debounce: 500}"
+       ng-change="SearchBar.search(SearchBar.model.query)"
+       ng-class="{'is-loading': SearchBar.model.is_loading}"
+>
+<div class="o-search-bar__content">
+    <div class="o-search-bar__content__info" ng-show="!SearchBar.model.latest_search.results.length">
+        Comece a digitar para buscar...
+    </div>
+    <div class="o-search-bar__content__results" ng-show="SearchBar.model.latest_search">
+        <div class="o-search-bar__content__result" ng-repeat="movie in SearchBar.model.latest_search.results | limitTo:5">
+            {{movie.title}}
+        </div>
+    </div>
+</div>

@@ -27,3 +27,15 @@ workbox.routing.registerRoute(
         ],
     })
 );
+
+// Always serve TMDB images from cache if they're available while they revalidate
+workbox.routing.registerRoute(
+    new RegExp(/^https:\/\/image\.tmdb\.org\//),
+    workbox.strategies.staleWhileRevalidate()
+);
+
+// Try to serve TMDB API requests from the network, fallback to cache while offline
+workbox.routing.registerRoute(
+    new RegExp(/^https:\/\/api\.themoviedb\.org\/3/),
+    workbox.strategies.networkFirst()
+);

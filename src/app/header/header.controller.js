@@ -1,4 +1,4 @@
-angular.module('middlerow').controller('HeaderController', [HeaderController]);
+angular.module('middlerow').controller('HeaderController', HeaderController);
 
 HeaderController.$inject = [];
 

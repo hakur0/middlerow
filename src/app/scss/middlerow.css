@@ -1,14 +1,22 @@
+.o-search-bar__icon, .o-search-bar__input {
+  transition: all 0.225s cubic-bezier(0.4, 0, 0.2, 1); }
+
 html, body {
   font-size: 14px; }
 
 body {
   overflow-y: scroll;
-  background-color: #f8f8f8; }
+  background-color: #fafaff; }
 
 .o-header {
-  display: flex;
-  height: 60px;
-  align-items: center; }
+  display: block;
+  height: 62px;
+  background: #fffafb;
+  border-bottom: 2px solid #ffd6e0; }
+  .o-header > .container {
+    height: 60px;
+    display: flex;
+    align-items: center; }
 
 .o-header__logo {
   height: 42px; }
@@ -19,5 +27,66 @@ body {
   font-size: 2rem;
   font-weight: 500;
   color: #ff426e; }
+
+.o-search-bar {
+  position: relative;
+  flex-grow: 1;
+  padding-left: 2em; }
+
+.o-search-bar__icon {
+  content: '';
+  position: absolute;
+  height: 36px;
+  width: 36px;
+  background: url(/images/mg-b.svg);
+  top: 3px;
+  left: calc(2em + 3px);
+  display: block;
+  pointer-events: none;
+  opacity: .6; }
+  .o-search-bar__icon.is-loading {
+    opacity: 1;
+    background: url(/images/sp-b.svg); }
+
+.o-search-bar__input {
+  width: 100%;
+  background: #fafaff;
+  height: 42px;
+  border: 2px solid #b4b3ff;
+  border-radius: 5px;
+  padding: 0 38px;
+  font-size: 1.25rem;
+  color: #9b99ff;
+  font-family: "Pridi", serif; }
+  .o-search-bar__input::-webkit-input-placeholder {
+    color: #9b99ff; }
+  .o-search-bar__input::-moz-placeholder {
+    color: #9b99ff; }
+  .o-search-bar__input:-ms-input-placeholder {
+    color: #9b99ff; }
+  .o-search-bar__input:-moz-placeholder {
+    color: #9b99ff; }
+  .o-search-bar__input:focus {
+    color: #5a57ff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; }
+  .o-search-bar__input:focus, .o-search-bar__input:active {
+    outline: none;
+    border-color: #5a57ff; }
+  .o-search-bar__input:focus + .o-search-bar__content {
+    opacity: 1;
+    pointer-events: auto; }
+
+.o-search-bar__content {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  width: calc(100% - 2em);
+  background: #fafaff;
+  border: 2px solid #5a57ff;
+  border-top: none;
+  padding: 1rem;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
 
 /*# sourceMappingURL=middlerow.css.map */
