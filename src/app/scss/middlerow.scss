@@ -1,5 +1,11 @@
-// Mixins
-@import "mixins/media";
+// Settings
+@import "settings";
+
+// Tools
+@import "tools";
+
+// Vendor
+@import "vendor";
 
 // Angular Components
 @import "../components/header/header.component";

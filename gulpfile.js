@@ -12,6 +12,7 @@ const revReplace = require('gulp-rev-replace');
 const filter = require('gulp-filter');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const workboxBuild = require('workbox-build');
 
 gulp.task('clean', function(){
     return del('dist/**');
@@ -39,7 +40,30 @@ gulp.task('minify', ['clean', 'sassify'], function(){
                .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', ['minify'], function(){
+gulp.task('copy-assets', ['minify'], function(){
+    const assets = [
+        'src/app/**/*.html'
+    ];
+
+    return gulp.src(assets, {base:'src'})
+               .pipe(gulp.dest('dist'));
+});
+
+gulp.task('service-worker', ['copy-assets'], () => {
+    return workboxBuild.injectManifest({
+        swSrc: 'src/sw.js',
+        swDest: 'dist/sw.js',
+        globDirectory: 'dist',
+        globPatterns: [
+            '**\/*.{js,css,html}',
+        ]
+    }).then(({count, size, warnings}) => {
+        warnings.forEach(console.warn);
+        console.log(`${count} files will be precached, totaling ${size} bytes.`);
+    });
+});
+
+gulp.task('build', ['service-worker'], function(){
     const assets = [
         'src/app/**/*.html'
     ];

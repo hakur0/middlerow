@@ -1,4 +1,23 @@
-div {
-  background: red; }
+html, body {
+  font-size: 14px; }
+
+body {
+  overflow-y: scroll;
+  background-color: #f8f8f8; }
+
+.o-header {
+  display: flex;
+  height: 60px;
+  align-items: center; }
+
+.o-header__logo {
+  height: 42px; }
+
+.o-header__logo-type {
+  padding-left: 1rem;
+  font-family: "Pridi", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #ff426e; }
 
 /*# sourceMappingURL=middlerow.css.map */
