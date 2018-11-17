@@ -1,11 +1,15 @@
 .o-header{
   display: block;
-  height: 62px;
-  background: hsla(346, 100%, 99%, 1);
-  border-bottom: 2px solid hsla(346, 100%, 92%, 1);
+  position: fixed;
+  height: $size-header-height;
+  background: hsla(348, 100%, 99%, 0.95);
+  border-bottom: 2px solid #ffd6e0;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 
   & > .container{
-    height: 60px;
+    height: $size-header-height - 2px; // Minus the bottom border
     display: flex;
     align-items: center;
   }
@@ -13,6 +17,7 @@
 
 .o-header__logo{
   height: 42px;
+  cursor: pointer;
 }
 
 .o-header__logo-type{
@@ -21,4 +26,5 @@
   font-size: 2rem;
   font-weight: 500;
   color: $color-main;
+  cursor: pointer;
 }

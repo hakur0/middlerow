@@ -1,0 +1,46 @@
+<!--<div class="o-movie-list__navigator">-->
+    <!--<div class="o-movie-list__total-results">-->
+        <!--{{MovieList.tmdbListResponse.total_results ? 'Total de ' + MovieList.tmdbListResponse.total_results + ' filmes' : ''}}-->
+    <!--</div>-->
+    <!--<div class="o-movie-list__pagination">-->
+        <!--<div-->
+                <!--class="o-movie-list__page o-movie-list__page&#45;&#45;control"-->
+                <!--ng-click="MovieList.onPageChange({page: MovieList.tmdbListResponse.page - 1})"-->
+                <!--ng-class="{'is-disabled': MovieList.tmdbListResponse.page == 1}"-->
+        <!--&gt;-->
+            <!--&lsaquo;-->
+        <!--</div>-->
+
+        <!--<div-->
+                <!--class="o-movie-list__page"-->
+                <!--ng-repeat="page in MovieList.generatePages(MovieList.tmdbListResponse)"-->
+                <!--ng-click="MovieList.onPageChange({page: page})"-->
+        <!--&gt;-->
+            <!--{{page}}-->
+        <!--</div>-->
+
+        <!--<div-->
+                <!--class="o-movie-list__page o-movie-list__page&#45;&#45;control"-->
+                <!--ng-click="MovieList.onPageChange({page: MovieList.tmdbListResponse.page + 1})"-->
+                <!--ng-class="{'is-disabled': MovieList.tmdbListResponse.page == MovieList.tmdbListResponse.total_pages}"-->
+        <!--&gt;-->
+            <!--&rsaquo;-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="o-movie-list__movies" vs-repeat="{scrollParent: 'window', scrolledToEnd: MovieList.nextPage, scrolledToBeginning: MovieList.previousPage}">
+    <div
+        class="o-movie-list__page"
+        ng-repeat="page in MovieList.model.pages track by page.page"
+        ng-attr-data-page="{{page.page !== MovieList.model.total_pages ? 'Página ' + (page.page + 1) : ''}}"
+    >
+        <div class="o-movie-list__movie" ng-repeat="movie in page.movies">
+            <a ui-sref="movie-details({movieId: movie.id})">
+                <div class="o-movie-list__movie__poster" ng-attr-style="background-image:url({{movie.poster_path}})">
+                    <div class="o-movie-list__movie__position">#{{(page.page - 1) * 20 + $index + 1}}</div>
+                    <div class="o-movie-list__movie__title">{{movie.title}}</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

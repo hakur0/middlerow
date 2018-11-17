@@ -1,4 +1,3 @@
-<div class="o-search-bar__icon" ng-class="{'is-loading': SearchBar.model.is_loading}"></div>
 <input class="o-search-bar__input"
        type="search"
        placeholder="Busque por filmes..."
@@ -7,6 +6,7 @@
        ng-change="SearchBar.search(SearchBar.model.query)"
        ng-class="{'is-loading': SearchBar.model.is_loading}"
 >
+<div class="o-search-bar__icon" ng-class="{'is-loading': SearchBar.model.is_loading}"></div>
 <div class="o-search-bar__content">
     <div class="o-search-bar__content__info" ng-show="!SearchBar.model.latest_search.results.length">
         Comece a digitar para buscar...

@@ -28,14 +28,36 @@ workbox.routing.registerRoute(
     })
 );
 
-// Always serve TMDB images from cache if they're available while they revalidate
+// Always serve images from cache, if available
 workbox.routing.registerRoute(
-    new RegExp(/^https:\/\/image\.tmdb\.org\//),
-    workbox.strategies.staleWhileRevalidate()
+    /\.(?:png|gif|jpg|jpeg|svg)$/,
+    workbox.strategies.cacheFirst({
+        cacheName: 'images',
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 100,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+            }),
+        ],
+    })
 );
 
 // Try to serve TMDB API requests from the network, fallback to cache while offline
 workbox.routing.registerRoute(
     new RegExp(/^https:\/\/api\.themoviedb\.org\/3/),
     workbox.strategies.networkFirst()
+);
+
+// Always serve TMDB images from cache if they're available while they revalidate
+workbox.routing.registerRoute(
+    new RegExp(/^https:\/\/image\.tmdb\.org\//),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'tmdb-images',
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 200,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+            }),
+        ],
+    })
 );

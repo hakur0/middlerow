@@ -1,8 +1,9 @@
 html, body{
-  font-size: 14px;
+  font-size: $size-rem;
+  font-family: $font-source-sans;
 }
 
 body{
   overflow-y: scroll;
-  background-color: hsla(241, 100%, 99%, 1);
+  background-color: hsla(240, 100%, 98%, 1);
 }

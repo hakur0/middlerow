@@ -1,0 +1,17 @@
+.o-content{
+  margin-top: $size-header-height;
+}
+
+.o-content__title{
+  font-family: $font-pridi;
+  color: $color-main;
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin-bottom: -.25rem;
+}
+
+.o-content__subtitle {
+  font-family: $font-pridi;
+  color: $color-accent;
+  font-size: 1.5rem;
+}

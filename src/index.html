@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="middlerow">
 <head>
+    <base href="/">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MiddleRow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
     <!--build:css middlerow.min.css-->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="app/scss/middlerow.css">
     <!-- endbuild -->
 
-    <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Pridi:400,500,600,700" rel="stylesheet">
-
     <!--build:js middlerow.min.js -->
     <!--AngularJS-->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-vs-repeat/dist/angular-vs-repeat.js"></script>
 
     <!--Middle Row-->
     <script src="app/middlerow.js"></script>
+
     <script src="app/core/constants.js"></script>
     <script src="app/core/interceptors.js"></script>
     <script src="app/core/tmdb.service.js"></script>
+
     <script src="app/header/header.component.js"></script>
     <script src="app/header/header.controller.js"></script>
     <script src="app/header/searchbar/searchbar.component.js"></script>
     <script src="app/header/searchbar/searchbar.controller.js"></script>
+
     <script src="app/movies/movie.factory.js"></script>
+    <script src="app/movies/movie-details/movie-details.component.js"></script>
+    <script src="app/movies/movie-details/movie-details.controller.js"></script>
+    <script src="app/movies/movie-list/movie-list.component.js"></script>
+    <script src="app/movies/movie-list/movie-list.controller.js"></script>
+    <script src="app/movies/popular-movies/popular-movies.component.js"></script>
+    <script src="app/movies/popular-movies/popular-movies.controller.js"></script>
     <!-- endbuild -->
 </head>
 <body>
     <app-header class="o-header"></app-header>
+    <div class="o-content" ui-view></div>
+    <footer>
+        <!--Google Fonts-->
+        <!--TODO: tirar as fontes não usadas no fim do design-->
+        <link href="https://fonts.googleapis.com/css?family=Pridi:400,500,600,700|Source+Sans+Pro:400,600,700" rel="stylesheet">
+    </footer>
 </body>
 </html>

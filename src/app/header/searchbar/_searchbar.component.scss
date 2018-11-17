@@ -45,6 +45,10 @@
     color: $color-accent;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+
+    + .o-search-bar__icon{
+      opacity: 1;
+    }
   }
 
   &:focus, &:active{
@@ -52,7 +56,7 @@
     border-color: $color-accent;
   }
 
-  &:focus + .o-search-bar__content {
+  &:focus ~ .o-search-bar__content {
     opacity: 1;
     pointer-events: auto;
   }

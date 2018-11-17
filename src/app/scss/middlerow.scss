@@ -7,6 +7,11 @@
 // Vendor
 @import "vendor";
 
+// Common objects
+@import "objects/content";
+
 // Angular Components
 @import "../header/header.component";
 @import "../header/searchbar/searchbar.component";
+@import "../movies/movie-details/movie-details.component";
+@import "../movies/movie-list/movie-list.component";

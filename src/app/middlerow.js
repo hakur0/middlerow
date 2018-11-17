@@ -1,4 +1,4 @@
-angular.module('middlerow', []);
+angular.module('middlerow', ['ui.router', 'vs-repeat']);
 angular.module('middlerow').config(middleRowConfig);
 
 // Initializes the Cache Service Worker
@@ -9,8 +9,33 @@ if('serviceWorker' in navigator){
 }
 
 // App config
-middleRowConfig.$inject = ['$httpProvider'];
+middleRowConfig.$inject = ['$httpProvider', '$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-function middleRowConfig($httpProvider){
+function middleRowConfig($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider){
+    // Install a HTTP response interceptor to handle fetch errors
     $httpProvider.interceptors.push('authInjector');
+
+    // Removes the #! URL code, since we're not supporting old browsers
+    $locationProvider.html5Mode(true);
+
+    // Unknown states will be redirected to the popular movies page
+    $urlRouterProvider.otherwise('/popular');
+
+    // App routes
+    $stateProvider
+        .state({
+            name: 'popular-movies',
+            url: '/popular?page',
+            component: 'popularMovies',
+            params: {
+                page: {
+                    dynamic: true
+                }
+            }
+        })
+        .state({
+            name: 'movie-details',
+            url: '/movie/:movieId',
+            component: 'movieDetails',
+        })
 }

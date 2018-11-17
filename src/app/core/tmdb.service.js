@@ -4,7 +4,17 @@ TmdbService.$inject = ['tmdbApiUrl', 'tmdbApiKey', '$http', '$httpParamSerialize
 
 function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieFactory){
     /**
+     * @typedef {Object} TmdbListResponse
+     * @property {number} page The current page
+     * @property {number} total_results The total number of results
+     * @property {number} total_pages The total number of pages
+     * @property {Movie[]} results An array of Movie objects
+     */
+
+
+    /**
      * Constructs a TMDB API url using a resource name and query params, if any.
+     * Automatically inserts the API key to the request.
      * @param {String} resource The API resource (eg: 'search/movies')
      * @param {Object} params The GET params to include, if any (eg: {'query': 'avengers'})
      * @returns {string} The constructed URL
@@ -33,10 +43,38 @@ function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieF
      * Gets search results for movies based on a query string
      * @param {String} query The query to search for
      * @param {Number} page The page to get, defaults to the first
-     * @returns {Promise|Object} A $http promise that resolves to an array of Movie objects
+     * @returns {Promise|TmdbListResponse} A $http promise that resolves into a TmdbListResponse object
      */
-    this.searchMovies = function(query, page = 1){
-        return $http.get(_constructUrl('search/movie', {query: encodeURIComponent(query), page: page})).then(function(response){
+    this.searchMovies = (query, page = 1)=>{
+        return $http.get(_constructUrl('search/movie', {query: query, page: page})).then((response)=>{
+            if(response.data.results.length){
+                const data = response.data;
+                data.results = _generateMovieList(data.results);
+                return data;
+            }
+            return response.data;
+        });
+    };
+
+    // TODO: potencialmente apagar essa função
+    /**
+     * Gets a list of keywords related to the given query
+     * @param {String} query The query to search for
+     * @returns {Promise|Object[]} A $http promise that resolves to an array of keyword objects
+     */
+    this.searchKeywords = (query)=>{
+        return $http.get(_constructUrl('search/keyword', {query: query})).then((response)=>{
+            return response.data.results;
+        });
+    };
+
+    /**
+     * Gets a paged list of the most popular TMDB's movies as of today
+     * @param {Number} page The page to get, defaults to the first
+     * @returns {Promise|TmdbListResponse} A $http promise that resolves into a TmdbListResponse object
+     */
+    this.getPopularMovies = (page = 1)=>{
+        return $http.get(_constructUrl('movie/popular', {page: page})).then((response)=>{
             if(response.data.results.length){
                 const data = response.data;
                 data.results = _generateMovieList(data.results);
@@ -47,13 +85,31 @@ function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieF
     };
 
     /**
-     * Gets a list of keywords related to the given query
-     * @param {String} query The query to search for
-     * @returns {Promise|Object[]} A $http promise that resolves to an array of keyword objects
+     * Gets a paged list of movies from the given TMDB API resource
+     * @param {string} resource The resource to fetch, eg: 'movie/popular'
+     * @param {number} page The page to fetch, defaults to the first
+     * @param {string?} query The query string to fetch if you're making a search request
+     * @returns {Promise|TmdbListResponse} A $http promise that resolves into a TmdbListResponse object
      */
-    this.searchKeywords = function(query){
-        return $http.get(_constructUrl('search/keyword', {query: encodeURIComponent(query)})).then(function(response){
-            return response.data.results;
+    this.getPaginatedMovieList = (resource, page = 1, query)=>{
+        return $http.get(_constructUrl(resource, {page: page, query: query})).then((response)=>{
+            if(response.data.results.length){
+                const data = response.data;
+                data.results = _generateMovieList(data.results);
+                return data;
+            }
+            return response.data;
         });
     };
+
+    /**
+     * Returns a Movie object from the TMDB's API
+     * @param {number} movieId The ID of the movie to retrieve
+     * @returns {Promise|Movie} A $http promise that resolves into a Movie
+     */
+    this.getMovie = (movieId)=>{
+        return $http.get(_constructUrl('movie/' + movieId)).then((response)=>{
+            return new MovieFactory(response.data);
+        });
+    }
 }

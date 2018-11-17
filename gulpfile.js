@@ -42,7 +42,8 @@ gulp.task('minify', ['clean', 'sassify'], function(){
 
 gulp.task('copy-assets', ['minify'], function(){
     const assets = [
-        'src/app/**/*.html'
+        'src/app/**/*.html',
+        'src/images/**/*'
     ];
 
     return gulp.src(assets, {base:'src'})
@@ -55,7 +56,7 @@ gulp.task('service-worker', ['copy-assets'], () => {
         swDest: 'dist/sw.js',
         globDirectory: 'dist',
         globPatterns: [
-            '**\/*.{js,css,html}',
+            '**\/*.{js,css,html,svg}',
         ]
     }).then(({count, size, warnings}) => {
         warnings.forEach(console.warn);

@@ -6,7 +6,7 @@ function SearchBarController(TmdbService){
     const self = this;
 
 
-    self.model = {
+    this.model = {
         query: '',
         latest_search: null,
         is_loading: false
@@ -16,7 +16,7 @@ function SearchBarController(TmdbService){
      * Search for movies at TMDB and updates the latest_search model
      * @param {String} query The query string to search for
      */
-    self.search = function(query){
+    this.search = function(query){
         if(query.length){
             self.model.is_loading = true;
 

@@ -1,32 +1,54 @@
-.o-search-bar__icon, .o-search-bar__input {
+.o-search-bar__icon, .o-search-bar__input, .o-movie-details__backdrop, .o-movie-list__movie__poster, .o-movie-list__movie__title {
   transition: all 0.225s cubic-bezier(0.4, 0, 0.2, 1); }
 
 html, body {
-  font-size: 14px; }
+  font-size: 14px;
+  font-family: "Source Sans Pro", sans-serif; }
 
 body {
   overflow-y: scroll;
-  background-color: #fafaff; }
+  background-color: #f5f5ff; }
+
+.o-content {
+  margin-top: 62px; }
+
+.o-content__title {
+  font-family: "Pridi", serif;
+  color: #ff426e;
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin-bottom: -.25rem; }
+
+.o-content__subtitle {
+  font-family: "Pridi", serif;
+  color: #5a57ff;
+  font-size: 1.5rem; }
 
 .o-header {
   display: block;
+  position: fixed;
   height: 62px;
-  background: #fffafb;
-  border-bottom: 2px solid #ffd6e0; }
+  background: rgba(255, 250, 251, 0.95);
+  border-bottom: 2px solid #ffd6e0;
+  width: 100%;
+  top: 0;
+  z-index: 1000; }
   .o-header > .container {
     height: 60px;
     display: flex;
     align-items: center; }
 
 .o-header__logo {
-  height: 42px; }
+  height: 42px;
+  cursor: pointer; }
 
 .o-header__logo-type {
   padding-left: 1rem;
   font-family: "Pridi", serif;
   font-size: 2rem;
   font-weight: 500;
-  color: #ff426e; }
+  color: #ff426e;
+  cursor: pointer; }
 
 .o-search-bar {
   position: relative;
@@ -70,10 +92,12 @@ body {
     color: #5a57ff;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; }
+    .o-search-bar__input:focus + .o-search-bar__icon {
+      opacity: 1; }
   .o-search-bar__input:focus, .o-search-bar__input:active {
     outline: none;
     border-color: #5a57ff; }
-  .o-search-bar__input:focus + .o-search-bar__content {
+  .o-search-bar__input:focus ~ .o-search-bar__content {
     opacity: 1;
     pointer-events: auto; }
 
@@ -88,5 +112,160 @@ body {
   padding: 1rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px; }
+
+.o-movie-details__backdrop {
+  margin-top: -62px;
+  padding-top: 76px;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  position: relative; }
+  .o-movie-details__backdrop::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(150deg, #ff426e 0%, #5a57ff 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.9; }
+  .o-movie-details__backdrop > .container {
+    position: relative;
+    height: 100%; }
+
+.o-movie-details__poster {
+  position: absolute;
+  height: 450px;
+  width: 300px;
+  z-index: 1;
+  top: 149px;
+  border-radius: 5px;
+  box-shadow: 0 10px 40px rgba(255, 66, 110, 0.25); }
+
+.o-movie-details__title {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 350px;
+  bottom: 1.5rem;
+  z-index: 1;
+  color: #fff;
+  font-family: "Pridi", serif;
+  font-weight: 500;
+  font-size: 4rem;
+  text-shadow: 0 3px 20px rgba(255, 66, 110, 0.25);
+  line-height: 1.2; }
+
+.o-movie-details__details {
+  padding-left: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem; }
+
+.o-movie-details__detail {
+  flex-basis: 50%;
+  flex-grow: 1;
+  margin-bottom: 1.5rem; }
+  .o-movie-details__detail.o-movie-details__detail--big {
+    flex-basis: 100%; }
+
+.o-movie-details__detail__title {
+  font-family: "Pridi", serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #5a57ff; }
+
+.o-movie-details__detail__value {
+  font-size: 17px; }
+
+.o-movie-list {
+  display: block;
+  margin-top: 2rem; }
+
+.o-movie-list__page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative; }
+  .o-movie-list__page::after {
+    content: attr(data-page);
+    display: block;
+    position: absolute;
+    height: 20px;
+    bottom: 16px;
+    left: 30px;
+    color: #8d8bee;
+    font-size: 15px;
+    font-family: "Pridi", serif;
+    border-bottom: 1px dashed #c1c1f6;
+    width: calc(100% - 60px);
+    line-height: 14px; }
+
+.o-movie-list__movie {
+  flex-grow: 1;
+  flex-basis: calc(100% / 4);
+  height: 342px;
+  margin-bottom: 4rem;
+  text-align: center; }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    .o-movie-list__movie {
+      height: 282px; } }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .o-movie-list__movie {
+      flex-basis: calc(100% / 2);
+      height: 432px; } }
+  @media screen and (max-width: 767px) {
+    .o-movie-list__movie {
+      flex-basis: 100%;
+      height: 450px; } }
+
+.o-movie-list__movie__poster {
+  position: relative;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 25px #cdcdee; }
+  .o-movie-list__movie__poster:hover {
+    box-shadow: 0 15px 40px #ff8aa5;
+    transform: translateY(-5px); }
+    .o-movie-list__movie__poster:hover > .o-movie-list__movie__title {
+      opacity: 1; }
+
+.o-movie-list__movie__title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  opacity: 0;
+  background: linear-gradient(to top, #ff426e 0%, rgba(255, 66, 110, 0.8) 30%, rgba(0, 0, 0, 0) 100%);
+  text-align: left;
+  font-size: 1.8rem;
+  font-family: "Pridi", serif;
+  color: #fff;
+  padding: 3em 1.5rem 1.5rem;
+  border-radius: 4px;
+  text-shadow: -1px 1px 4px #e40c3e;
+  font-weight: 500;
+  line-height: 1.2; }
+  @media screen and (max-width: 991px) {
+    .o-movie-list__movie__title {
+      opacity: 1; } }
+
+.o-movie-list__page__separator {
+  width: 100%; }
+
+.o-movie-list__movie__position {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ff426e;
+  font-size: 16px;
+  font-family: "Pridi", serif;
+  font-weight: 500;
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 4px;
+  box-shadow: 0 3px 15px rgba(255, 66, 110, 0.35); }
 
 /*# sourceMappingURL=middlerow.css.map */

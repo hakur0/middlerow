@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="o-content__title">Filmes populares</div>
+    <div class="o-content__subtitle">Atualizados diariamente pelo TMDB</div>
+    <movie-list
+            class="o-movie-list"
+            data-resource="movie/popular"
+            data-page="PopularMovies.model.initial_page || 1"
+            on-change-page="PopularMovies.updatePage(page)"
+    ></movie-list>
+</div>
