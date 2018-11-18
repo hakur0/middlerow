@@ -43,7 +43,7 @@ aplicação, mas facilita bastante quando é preciso criar aplicações não tã
 Todas as imagens (exceto às imagens do TMDB) foram feitas em SVG para diminuir o tamanho total dos arquivos,
 melhorar a performance de renderização e permitir que todas sejam facilmente incluídas no cache.
 
-O design é 100% responsável e feito utilizando um mixin de media query super simples em SASS que facilita muito
+O design é 100% responsivo e feito utilizando um mixin de media query super simples em SASS que facilita muito
 na hora de criar estilos diferentes pra cada breakpoint do Bootstrap.
 
 ### Build
@@ -55,7 +55,7 @@ O processo de build minifica CSS e JS, unifica esses arquivos em um, adiciona ta
 o cache, gera uma lista de pré-cache para o Workbox, e copia os assets necessários para o PWA funcionar.
 
 ## Instalando localmente
-Caso seja necessário, instalar e rodar o MiddleRow localmente é super simples.
+Caso seja necessário, instalar e rodar o MiddleRow localmente é super simples:
 
 1. `git clone` nesse  repositório
 2. Entre na pasta middlerow: `cd middlerow`
