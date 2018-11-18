@@ -1,4 +1,4 @@
-angular.module('middlerow', ['ui.router', 'vs-repeat']);
+angular.module('middlerow', ['ui.router', 'vs-repeat', 'ngAnimate']);
 angular.module('middlerow').config(middleRowConfig);
 
 // Initializes the Cache Service Worker
@@ -13,7 +13,7 @@ middleRowConfig.$inject = ['$httpProvider', '$stateProvider', '$urlRouterProvide
 
 function middleRowConfig($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider){
     // Install a HTTP response interceptor to handle fetch errors
-    $httpProvider.interceptors.push('authInjector');
+    $httpProvider.interceptors.push('HttpErrorHandler');
 
     // Removes the #! URL code, since we're not supporting old browsers
     $locationProvider.html5Mode(true);

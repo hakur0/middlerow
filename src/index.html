@@ -16,6 +16,7 @@
     <!--build:js middlerow.min.js -->
     <!--AngularJS-->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-vs-repeat/dist/angular-vs-repeat.js"></script>
 
@@ -38,9 +39,14 @@
     <script src="app/movies/movie-list/movie-list.controller.js"></script>
     <script src="app/movies/popular-movies/popular-movies.component.js"></script>
     <script src="app/movies/popular-movies/popular-movies.controller.js"></script>
+
+    <script src="app/notifications/notification.factory.js"></script>
+    <script src="app/notifications/notification-list/notification-list.component.js"></script>
+    <script src="app/notifications/notification-list/notification-list.controller.js"></script>
     <!-- endbuild -->
 </head>
 <body>
+    <notification-list class="c-notification-list"></notification-list>
     <app-header class="o-header"></app-header>
     <div class="o-content" ui-view></div>
     <footer>

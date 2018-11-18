@@ -1,0 +1,5 @@
+<div ng-attr-class="c-notification {{notification.level}}" ng-repeat="notification in NotificationList.model.notifications">
+    <div class="c-notification__title">{{notification.title}}</div>
+    <div class="c-notification__content">{{notification.description}}</div>
+    <div class="c-notification__close" ng-click="NotificationList.removeNotification(notification)">✖</div>
+</div>

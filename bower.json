@@ -20,6 +20,7 @@
     "angular": "angularjs#^1.7.5",
     "bootstrap": "3",
     "angular-ui-router": "^1.0.20",
-    "angular-vs-repeat": "^2.0.9"
+    "angular-vs-repeat": "^2.0.9",
+    "angular-animate": "1.7.5"
   }
 }

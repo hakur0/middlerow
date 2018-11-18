@@ -13,5 +13,5 @@ function MovieDetailsController($stateParams, TmdbService){
         TmdbService.getMovie($stateParams.movieId).then((movie)=>{
             self.model.movie = movie;
         });
-    }
+    };
 }

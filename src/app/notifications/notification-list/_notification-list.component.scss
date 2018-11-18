@@ -1,0 +1,67 @@
+.c-notification-list{
+  display: block;
+  position: fixed;
+  top: $size-header-height;
+  right: 0;
+  padding: 2rem;
+  z-index: 1;
+}
+
+.c-notification {
+  @extend %t-animated;
+
+  position: relative;
+  background: hsla(345, 100%, 83%, 1);
+  border: 2px solid hsla(344, 80%, 65%, 1);
+  border-radius: $size-border-radius;
+  max-width: 20vw;
+  box-shadow: 0 8px 60px -10px hsla(346, 100%, 51%, 0.68);
+  margin-bottom: 1rem;
+
+  &.ng-enter{
+    opacity: 0;
+    transform: translateX(15px);
+  }
+
+  &.ng-enter-active{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  &.ng-leave{
+    opacity: 1;
+    transform: translateX(0px);
+    max-height: 150px;
+  }
+
+  &.ng-leave-active{
+    opacity: 0;
+    transform: translateX(15px);
+    max-height: 0;
+  }
+}
+
+.c-notification__title {
+  font-family: $font-pridi;
+  font-size: 17px;
+  font-weight: 500;
+  border-bottom: 2px solid rgb(237, 94, 132);
+  padding: .75rem 1rem;
+  color: hsla(344, 60%, 25%, 1);
+}
+
+.c-notification__content {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 1rem;
+  color: hsla(344, 60%, 25%, 1);
+}
+
+.c-notification__close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  color: hsla(344, 60%, 50%, 1);
+  font-size: 16px;
+  cursor: pointer;
+}
