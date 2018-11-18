@@ -38,4 +38,14 @@ function middleRowConfig($httpProvider, $stateProvider, $urlRouterProvider, $loc
             url: '/movie/:movieId',
             component: 'movieDetails',
         })
+        .state({
+            name: 'search-list',
+            url: '/search?query?page',
+            component: 'searchList',
+            params: {
+                page: {
+                    dynamic: true
+                }
+            }
+        })
 }

@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="o-content__title">Busca por &ldquo;{{SearchList.model.query}}&rdquo;</div>
+    <movie-list
+            class="o-movie-list"
+            data-resource="search/movie"
+            data-query="SearchList.model.query"
+            data-page="SearchList.model.page"
+            on-change-page="SearchList.updatePage(page)"
+    ></movie-list>
+</div>

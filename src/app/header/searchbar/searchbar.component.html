@@ -1,19 +1,21 @@
-<input class="o-search-bar__input"
-       type="search"
-       placeholder="Busque por filmes..."
-       ng-model="SearchBar.model.query"
-       ng-model-options="{debounce: 500}"
-       ng-change="SearchBar.search(SearchBar.model.query)"
-       ng-class="{'is-loading': SearchBar.model.is_loading}"
->
-<div class="o-search-bar__icon" ng-class="{'is-loading': SearchBar.model.is_loading}"></div>
-<div class="o-search-bar__content">
-    <div class="o-search-bar__content__info" ng-show="!SearchBar.model.latest_search.results.length">
-        Comece a digitar para buscar...
-    </div>
-    <div class="o-search-bar__content__results" ng-show="SearchBar.model.latest_search">
-        <div class="o-search-bar__content__result" ng-repeat="movie in SearchBar.model.latest_search.results | limitTo:5">
-            {{movie.title}}
+<form ng-submit="SearchBar.search(SearchBar.model.query)">
+    <input class="o-search-bar__input"
+           type="search"
+           placeholder="Busque por filmes..."
+           ng-model="SearchBar.model.query"
+           ng-model-options="{debounce: 500}"
+           ng-change="SearchBar.searchKeywords(SearchBar.model.query)"
+           ng-class="{'is-loading': SearchBar.model.is_loading, 'has-keywords': SearchBar.model.latest_search && SearchBar.model.latest_search.length}"
+    >
+    <div class="o-search-bar__icon" ng-class="{'is-loading': SearchBar.model.is_loading}"></div>
+    <div class="o-search-bar__content" ng-class="{'is-visible': SearchBar.model.latest_search && SearchBar.model.latest_search.length}">
+        <div class="o-search-bar__content__results" ng-show="SearchBar.model.latest_search">
+            <div
+                class="o-search-bar__content__result"
+                ng-click="SearchBar.search(keyword.name)"
+                ng-repeat="keyword in SearchBar.model.latest_search | limitTo:8"
+                ng-bind="keyword.name"
+            ></div>
         </div>
     </div>
-</div>
+</form>

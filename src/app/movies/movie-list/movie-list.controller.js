@@ -44,15 +44,17 @@ function MovieListController(TmdbService, $q, $scope){
     function nextPage(){
         const last_page = self.model.pages[self.model.pages.length - 1];
 
-        queryApi(last_page.page + 1, last_page.query).then((response)=>{
-            if(self.model.pages[self.model.pages.length - 1].query === last_page.query){
-                self.model.pages.push({
-                    page: response.page,
-                    movies: response.results,
-                    query: last_page.query
-                })
-            }
-        }).catch(angular.noop);
+        if(last_page.page < self.model.total_pages){
+            queryApi(last_page.page + 1, last_page.query).then((response)=>{
+                if(self.model.pages[self.model.pages.length - 1].query === last_page.query){
+                    self.model.pages.push({
+                        page: response.page,
+                        movies: response.results,
+                        query: last_page.query
+                    })
+                }
+            }).catch(angular.noop);
+        }
     }
 
     function previousPage(){

@@ -1,33 +1,10 @@
-<!--<div class="o-movie-list__navigator">-->
-    <!--<div class="o-movie-list__total-results">-->
-        <!--{{MovieList.tmdbListResponse.total_results ? 'Total de ' + MovieList.tmdbListResponse.total_results + ' filmes' : ''}}-->
-    <!--</div>-->
-    <!--<div class="o-movie-list__pagination">-->
-        <!--<div-->
-                <!--class="o-movie-list__page o-movie-list__page&#45;&#45;control"-->
-                <!--ng-click="MovieList.onPageChange({page: MovieList.tmdbListResponse.page - 1})"-->
-                <!--ng-class="{'is-disabled': MovieList.tmdbListResponse.page == 1}"-->
-        <!--&gt;-->
-            <!--&lsaquo;-->
-        <!--</div>-->
-
-        <!--<div-->
-                <!--class="o-movie-list__page"-->
-                <!--ng-repeat="page in MovieList.generatePages(MovieList.tmdbListResponse)"-->
-                <!--ng-click="MovieList.onPageChange({page: page})"-->
-        <!--&gt;-->
-            <!--{{page}}-->
-        <!--</div>-->
-
-        <!--<div-->
-                <!--class="o-movie-list__page o-movie-list__page&#45;&#45;control"-->
-                <!--ng-click="MovieList.onPageChange({page: MovieList.tmdbListResponse.page + 1})"-->
-                <!--ng-class="{'is-disabled': MovieList.tmdbListResponse.page == MovieList.tmdbListResponse.total_pages}"-->
-        <!--&gt;-->
-            <!--&rsaquo;-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div
+    class="o-movie-list__load-previous"
+    ng-if="MovieList.model.pages.length && MovieList.model.pages[0].page !== 1"
+    ng-click="MovieList.previousPage()"
+>
+    Carregar página anterior
+</div>
 <div class="o-movie-list__movies" vs-repeat="{scrollParent: 'window', scrolledToEnd: MovieList.nextPage, scrolledToBeginning: MovieList.previousPage}">
     <div
         class="o-movie-list__page"

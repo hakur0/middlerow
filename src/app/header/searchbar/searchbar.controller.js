@@ -1,10 +1,9 @@
 angular.module('middlerow').controller('SearchBarController', SearchBarController);
 
-SearchBarController.$inject = ['TmdbService'];
+SearchBarController.$inject = ['TmdbService', '$state'];
 
-function SearchBarController(TmdbService){
+function SearchBarController(TmdbService, $state){
     const self = this;
-
 
     this.model = {
         query: '',
@@ -12,15 +11,29 @@ function SearchBarController(TmdbService){
         is_loading: false
     };
 
+    this.search = search;
+    this.searchKeywords = searchKeywords;
+
+
+    /**
+     * Redirect the user to the search page
+     * @param {string} query The query to search for
+     */
+    function search(query){
+        self.model.query = '';
+        self.model.latest_search = null;
+        $state.go('search-list', {query: query});
+    }
+
     /**
      * Search for movies at TMDB and updates the latest_search model
      * @param {String} query The query string to search for
      */
-    this.search = function(query){
+    function searchKeywords(query){
         if(query.length){
             self.model.is_loading = true;
 
-            TmdbService.searchMovies(query).then((response) => {
+            TmdbService.searchKeywords(query).then((response) => {
                 self.model.latest_search = response;
             }).finally(() => {
                 self.model.is_loading = false;

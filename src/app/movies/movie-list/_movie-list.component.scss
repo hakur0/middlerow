@@ -22,10 +22,10 @@
 .o-movie-list__page {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
 
-  &::after {
+  &[data-page^="P"]::after {
     content: attr(data-page);
     display: block;
     position: absolute;
@@ -47,6 +47,7 @@
   height: ((1140px / 4) * 0.8) * 1.5; // Formula: ((content width / number of movies per row) - 20% for padding) * the aspect ratio of the posters
   margin-bottom: 4rem;
   text-align: center;
+  max-width: 25%;
 
   @include media(md){
     height: ((940px / 4) * 0.8) * 1.5;
@@ -55,11 +56,13 @@
   @include media(sm){
     flex-basis: calc(100% / 2);
     height: ((720px / 2) * 0.8) * 1.5;
+    max-width: 50%;
   }
 
   @include media(xs){
     flex-basis: 100%;
     height: 450px;
+    max-width: 100%;
   }
 }
 
@@ -124,4 +127,14 @@
   padding: 1px 5px;
   border-radius: 4px;
   box-shadow: 0 3px 15px hsla(346, 100%, 63%, 0.35);
+}
+
+.o-movie-list__load-previous {
+    text-align: center;
+    font-size: 17px;
+    font-family: $font-pridi;
+    color: $color-main;
+    font-weight: 500;
+    margin: 0 0 1.5rem;
+    cursor: pointer;
 }
