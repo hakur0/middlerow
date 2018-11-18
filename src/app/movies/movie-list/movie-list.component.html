@@ -21,3 +21,7 @@
         </div>
     </div>
 </div>
+<div class="o-movie-list__blank-state" ng-if="MovieList.model.pages.length && !MovieList.model.pages[0].movies.length">
+    <img src="/images/sad-face.svg" alt="Nenhum filme encontrado."><br>
+    Nenhum filme encontrado.
+</div>

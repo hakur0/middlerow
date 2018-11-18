@@ -13,6 +13,78 @@ const filter = require('gulp-filter');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const workboxBuild = require('workbox-build');
+const realFavicon = require('gulp-real-favicon');
+const FAVICON_DATA_FILE = 'faviconData.json';
+
+gulp.task('generate-favicon', function(done) {
+    realFavicon.generateFavicon({
+        masterPicture: 'src/images/icon/logo.png',
+        dest: 'dist',
+        iconsPath: '/',
+        design: {
+            ios: {
+                pictureAspect: 'backgroundAndMargin',
+                backgroundColor: '#ffeef2',
+                margin: '18%',
+                assets: {
+                    ios6AndPriorIcons: false,
+                    ios7AndLaterIcons: false,
+                    precomposedIcons: false,
+                    declareOnlyDefaultIcon: true
+                },
+                appName: 'MiddleRow'
+            },
+            desktopBrowser: {},
+            windows: {
+                pictureAspect: 'noChange',
+                backgroundColor: '#ffeef2',
+                onConflict: 'override',
+                assets: {
+                    windows80Ie10Tile: false,
+                    windows10Ie11EdgeTiles: {
+                        small: false,
+                        medium: true,
+                        big: false,
+                        rectangle: false
+                    }
+                },
+                appName: 'MiddleRow'
+            },
+            androidChrome: {
+                pictureAspect: 'shadow',
+                themeColor: '#ff416e',
+                manifest: {
+                    name: 'MiddleRow',
+                    startUrl: 'https://middlerow.xyz',
+                    display: 'standalone',
+                    orientation: 'notSet',
+                    onConflict: 'override',
+                    declared: true
+                },
+                assets: {
+                    legacyIcon: false,
+                    lowResolutionIcons: false
+                }
+            },
+            safariPinnedTab: {
+                pictureAspect: 'blackAndWhite',
+                threshold: 65.3125,
+                themeColor: '#ff416e'
+            }
+        },
+        settings: {
+            compression: 1,
+            scalingAlgorithm: 'Lanczos',
+            errorOnImageTooSmall: false,
+            readmeFile: false,
+            htmlCodeFile: false,
+            usePathAsIs: false
+        },
+        markupFile: FAVICON_DATA_FILE
+    }, function() {
+        done();
+    });
+});
 
 gulp.task('clean', function(){
     return del('dist/**');
@@ -30,6 +102,7 @@ gulp.task('minify', ['clean', 'sassify'], function(){
     const indexHtmlFilter = filter(['**/*', '!**/index.html'], { restore: true });
 
     return gulp.src('src/index.html')
+               .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
                .pipe(useref().on('error', gutil.log))
                .pipe(gulpIf('*.js', uglify())).on('error', function(err){gutil.log(gutil.colors.red('[Error]'), err.toString());})
                .pipe(indexHtmlFilter)
@@ -43,7 +116,8 @@ gulp.task('minify', ['clean', 'sassify'], function(){
 gulp.task('copy-assets', ['minify'], function(){
     const assets = [
         'src/app/**/*.html',
-        'src/images/**/*'
+        'src/images/**/*',
+        '!src/images/icon/**/*'
     ];
 
     return gulp.src(assets, {base:'src'})

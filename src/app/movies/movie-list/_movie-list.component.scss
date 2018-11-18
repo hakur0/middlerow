@@ -111,10 +111,6 @@
   }
 }
 
-.o-movie-list__page__separator {
-  width: 100%;
-}
-
 .o-movie-list__movie__position {
   position: absolute;
   top: 1rem;
@@ -137,4 +133,20 @@
     font-weight: 500;
     margin: 0 0 1.5rem;
     cursor: pointer;
+}
+
+.o-movie-list__blank-state {
+  text-align: center;
+  font-family: $font-pridi;
+  color: $color-main;
+  font-size: 2rem;
+  font-weight: 500;
+  text-shadow: 0 5px 24px hsla(346, 100%, 63%, 0.25);
+  padding-top: 2rem;
+
+  > img {
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 50px -8px hsla(346, 100%, 63%, 0.6);
+    border-radius: 35px;
+  }
 }

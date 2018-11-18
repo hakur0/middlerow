@@ -34,7 +34,7 @@ function SearchBarController(TmdbService, $state){
             self.model.is_loading = true;
 
             TmdbService.searchKeywords(query).then((response) => {
-                self.model.latest_search = response;
+                if(self.model.query.length) self.model.latest_search = response;
             }).finally(() => {
                 self.model.is_loading = false;
             });

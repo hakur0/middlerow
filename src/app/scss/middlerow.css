@@ -24,6 +24,9 @@ body {
   color: #5a57ff;
   font-size: 1.5rem; }
 
+.o-page {
+  padding-top: 1rem; }
+
 .o-header {
   display: block;
   position: fixed;
@@ -127,7 +130,7 @@ body {
 
 .o-search-bar__content__result {
   font-size: 16px;
-  font-family: 'Pridi';
+  font-family: "Pridi", serif;
   color: #3e3cb1;
   padding: .2rem 1rem;
   cursor: pointer; }
@@ -277,9 +280,6 @@ body {
     .o-movie-list__movie__title {
       opacity: 1; } }
 
-.o-movie-list__page__separator {
-  width: 100%; }
-
 .o-movie-list__movie__position {
   position: absolute;
   top: 1rem;
@@ -301,6 +301,19 @@ body {
   font-weight: 500;
   margin: 0 0 1.5rem;
   cursor: pointer; }
+
+.o-movie-list__blank-state {
+  text-align: center;
+  font-family: "Pridi", serif;
+  color: #ff426e;
+  font-size: 2rem;
+  font-weight: 500;
+  text-shadow: 0 5px 24px rgba(255, 66, 110, 0.25);
+  padding-top: 2rem; }
+  .o-movie-list__blank-state > img {
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 50px -8px rgba(255, 66, 110, 0.6);
+    border-radius: 35px; }
 
 .c-notification-list {
   display: block;
