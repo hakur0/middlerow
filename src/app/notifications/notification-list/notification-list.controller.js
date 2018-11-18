@@ -26,11 +26,16 @@ function NotificationListController($timeout, $rootScope){
     function showNotification(notification){
         self.model.notifications.push(notification);
 
-            // $timeout(10000).then(()=>{
-            //     removeNotification(notification)
-            // });
+        // Dismiss the notification after 10 seconds
+        $timeout(10000).then(()=>{
+            removeNotification(notification)
+        });
     }
 
+    /**
+     * Dismiss a notification from the list
+     * @param {Notification} notification The notification to dismiss
+     */
     function removeNotification(notification){
         const notification_index = self.model.notifications.indexOf(notification);
 

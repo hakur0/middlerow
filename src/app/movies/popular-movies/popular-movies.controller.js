@@ -3,14 +3,16 @@ angular.module('middlerow').controller('PopularMoviesController', PopularMoviesC
 PopularMoviesController.$inject = ['$stateParams', '$state', 'TmdbService'];
 
 function PopularMoviesController($stateParams, $state, TmdbService){
-    const self = this;
-
     this.model = {
         initial_page: $stateParams.page
     };
     this.updatePage = updatePage;
     this.forceNetworkError = forceNetworkError;
 
+
+    /**
+     * Helper function to live test notifications
+     */
     function forceNetworkError(){
         const message = 'Isso irá fazer 41 requests seguidas à API do TMDB ' +
             'para tentar gerar um erro 429 (Too Many Requests). Continuar?';
@@ -22,7 +24,10 @@ function PopularMoviesController($stateParams, $state, TmdbService){
         }
     }
 
-
+    /**
+     * Updates the current page parameter in the URL
+     * @param {number} page The current page
+     */
     function updatePage(page){
         $state.go('popular-movies', {page: page === 1 ? null : page});
     }

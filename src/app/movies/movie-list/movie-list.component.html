@@ -12,7 +12,7 @@
         ng-attr-data-page="{{page.page !== MovieList.model.total_pages ? 'Página ' + (page.page + 1) : ''}}"
     >
         <div class="o-movie-list__movie" ng-repeat="movie in page.movies">
-            <a ui-sref="movie-details({movieId: movie.id})">
+            <a ui-sref="movie-details({movieId: movie.id, movie: movie})">
                 <div
                     class="o-movie-list__movie__poster"
                     ng-attr-style="background-image:url({{movie.poster_path}}),linear-gradient(135deg, rgba(255,65,110,0.45) 0%,rgba(88,85,255,0.45) 100%)"

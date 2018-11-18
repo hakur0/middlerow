@@ -12,22 +12,26 @@
         <div class="o-movie-details__detail__title">Título Original</div>
         <div class="o-movie-details__detail__value">{{MovieDetails.model.movie.original_title}}</div>
     </div>
-    <div class="o-movie-details__detail">
+    <div class="o-movie-details__detail" ng-if="MovieDetails.model.movie.vote_average">
+        <div class="o-movie-details__detail__title">Nota dos Usuários</div>
+        <div class="o-movie-details__detail__value">{{MovieDetails.model.movie.vote_average}}/10</div>
+    </div>
+    <div class="o-movie-details__detail" ng-if="MovieDetails.model.movie.release_date">
         <div class="o-movie-details__detail__title">Data de Lançamento</div>
         <div class="o-movie-details__detail__value">{{MovieDetails.model.movie.release_date | date}}</div>
     </div>
-    <div class="o-movie-details__detail">
+    <div class="o-movie-details__detail" ng-if="MovieDetails.model.movie.genres.length">
         <div class="o-movie-details__detail__title">Gênero{{MovieDetails.model.movie.genres.length === 1 ? '' : 's'}}</div>
         <div class="o-movie-details__detail__value">
             <span ng-repeat="genre in MovieDetails.model.movie.genres">{{genre.name}}{{$last ? '' : ', '}}</span>
         </div>
     </div>
-    <div class="o-movie-details__detail">
+    <div class="o-movie-details__detail" ng-if="MovieDetails.model.movie.runtime">
         <div class="o-movie-details__detail__title">Tempo de Filme</div>
         <div class="o-movie-details__detail__value">{{MovieDetails.model.movie.runtime}} minutos</div>
     </div>
-    <div class="o-movie-details__detail o-movie-details__detail--big">
+    <div class="o-movie-details__detail o-movie-details__detail--big" ng-if="MovieDetails.model.movie.overview">
         <div class="o-movie-details__detail__title">Sinopse</div>
-        <div class="o-movie-details__detail__value">{{MovieDetails.model.movie.overview}}</div>
+        <div class="o-movie-details__detail__value">{{MovieDetails.model.movie.overview || 'Filme sem sinopse.'}}</div>
     </div>
 </div>

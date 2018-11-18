@@ -10,8 +10,7 @@ body {
   background-color: #f5f5ff; }
 
 .o-content {
-  margin-top: 62px;
-  }
+  margin-top: 62px; }
 
 .o-content__title {
   font-family: "Pridi", serif;
@@ -86,7 +85,7 @@ body {
   position: absolute;
   height: 36px;
   width: 36px;
-  background: url(/images/mg-b.svg);
+  background: url(/images/search.svg);
   top: 3px;
   left: calc(2rem + 3px);
   display: block;
@@ -94,7 +93,7 @@ body {
   opacity: .6; }
   .o-search-bar__icon.is-loading {
     opacity: 1;
-    background: url(/images/sp-b.svg); }
+    background: url(/images/spinner.svg); }
   @media screen and (max-width: 767px) {
     .o-search-bar__icon {
       left: calc(1rem + 3px); } }
@@ -159,8 +158,7 @@ body {
   height: 450px;
   background-size: cover;
   background-position: center;
-  position: relative;
-  }
+  position: relative; }
   .o-movie-details__backdrop::after {
     content: '';
     height: 100%;

@@ -20,7 +20,7 @@
   position: absolute;
   height: 36px;
   width: 36px;
-  background: url(/images/mg-b.svg);
+  background: url(/images/search.svg);
   top: 3px;
   left: calc(2rem + 3px);
   display: block;
@@ -29,11 +29,11 @@
 
   &.is-loading{
     opacity: 1;
-    background: url(/images/sp-b.svg);
+    background: url(/images/spinner.svg);
   }
 
   @include media(xs){
-    left: calc(1rem + 3px);  
+    left: calc(1rem + 3px);
   }
 }
 

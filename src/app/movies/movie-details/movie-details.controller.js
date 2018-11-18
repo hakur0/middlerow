@@ -10,6 +10,9 @@ function MovieDetailsController($stateParams, TmdbService){
     };
 
     this.$onInit = ()=>{
+        // If a Movie object was passed, use it to populate the component before fetching more info
+        if($stateParams.movie) self.model.movie = $stateParams.movie;
+
         TmdbService.getMovie($stateParams.movieId).then((movie)=>{
             self.model.movie = movie;
         });

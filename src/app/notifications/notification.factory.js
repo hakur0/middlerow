@@ -4,6 +4,7 @@ angular.module('middlerow').factory('NotificationFactory', ()=>{
         'notice'
     ];
 
+    // noinspection UnnecessaryLocalVariableJS
     /**
      * Creates Notification objects
      * @param {string} level The notification level ('error' or 'notice')
@@ -13,7 +14,7 @@ angular.module('middlerow').factory('NotificationFactory', ()=>{
      */
     const Notification = function(level, title, description){
         if(levels.indexOf(level) === -1){
-            console.error(`'${level}' is not a known notification level. Defaulting to 'notice'.`)
+            console.error(`'${level}' is not a known notification level. Defaulting to 'notice'.`);
             level = 'notice';
         }
 

@@ -38,6 +38,9 @@ function middleRowConfig($httpProvider, $stateProvider, $urlRouterProvider, $loc
             name: 'movie-details',
             url: '/movie/:movieId',
             component: 'movieDetails',
+            params:{
+                movie: null
+            }
         })
         .state({
             name: 'search-list',

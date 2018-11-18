@@ -42,24 +42,6 @@ function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieF
     }
 
     /**
-     * Gets search results for movies based on a query string
-     * @param {String} query The query to search for
-     * @param {Number} page The page to get, defaults to the first
-     * @returns {Promise|TmdbListResponse} A $http promise that resolves into a TmdbListResponse object
-     */
-    this.searchMovies = (query, page = 1)=>{
-        return $http.get(_constructUrl('search/movie', {query: query, page: page})).then((response)=>{
-            if(response.data.results.length){
-                const data = response.data;
-                data.results = _generateMovieList(data.results);
-                return data;
-            }
-            return response.data;
-        });
-    };
-
-    // TODO: potencialmente apagar essa função
-    /**
      * Gets a list of keywords related to the given query
      * @param {String} query The query to search for
      * @returns {Promise|Object[]} A $http promise that resolves to an array of keyword objects

@@ -1,4 +1,5 @@
 angular.module('middlerow').factory('MovieFactory', ()=>{
+    // noinspection UnnecessaryLocalVariableJS
     /**
      * Create Movie objects
      * @param data The raw movie object returned by the TMDB API responses
