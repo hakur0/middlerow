@@ -4,6 +4,33 @@ Foi feito como um teste de entrevista para o Agenda Edu.
 
 A aplicação está atualmente hospedada na AWS, nesse link: https://middlerow.xyz/
 
+## Dicas para facilitar o teste
+1. A lista de filmes (tanto a popular quanto a de busca) é construída "on demand", como pedia um dos requisitos
+bônus do teste.
+2. Para testar as notificações e o tratamento de erros no caso do usuário fazer várias requests ao mesmo tempo,
+coloquei um "botão escondido" para fazer 41 requests seguidas à API. Basta clicar no título `Filmes populares`
+na página principal da aplicação. As requests podem demorar uns segundos para começar a dar erro.
+3. A barra de busca faz pequenas buscas de palavra chave quando o usuário vai escrevendo. Ela tem um debounce de
+500ms, um dos requisitos do teste. Apertar Enter ou clicar nas palavras chave levam o usuário para a página
+de busca.
+4. Um pequeno aviso aparece no topo do site quando o usuário fica offline e navega para alguma página. Os resultados
+em cache são usados nesses casos.
+5. O sistema de cache do Workbox não faz cache das requisições da API na primeira vez que o usuário entra no site.
+Isso é esperado, já que inicializar o cache logo depois da instalação pode gerar páginas de caches fantasmas. No
+segundo carregamento, todas as requisições são colocadas em cache.
+6. Por outro lado, o Workbox cria um cache com todos os arquivos necessários para abrir a aplicação logo na 
+instalação do service worker. A partir da segunda vez que o usuário entra, o tempo de First Meaningful Paint
+da aplicação fica bem abaixo de 1 segundo.
+
+Primeiro carregamento (testes do Lighthouse usando o Chrome): 
+![Primeiro carregamento](https://i.imgur.com/tsFnV7C.png)
+
+Segundo carregamento:
+![Segundo carregamento](https://i.imgur.com/mcV4WDq.png)
+
+
+## Resumo
+
 Abaixo, escrevi um resumo de como produzi a aplicação como um todo. Caso tenham dúvidas, estou à disposição :)
 
 ### Aplicação
