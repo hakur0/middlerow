@@ -1,6 +1,9 @@
 <div class="o-movie-details__backdrop" ng-attr-style="background-image:url({{MovieDetails.model.movie.backdrop_path}})">
     <div class="container">
-        <div class="o-movie-details__poster" ng-attr-style="background-image:url({{MovieDetails.model.movie.poster_path}})"></div>
+        <div
+            class="o-movie-details__poster"
+            ng-attr-style="background-image:url({{MovieDetails.model.movie.poster_path}}),linear-gradient(135deg, rgba(255,65,110,0.45) 0%,rgba(88,85,255,0.45) 100%)"
+        ></div>
         <div class="o-movie-details__title">{{MovieDetails.model.movie.title}}</div>
     </div>
 </div>

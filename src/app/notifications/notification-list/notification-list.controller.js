@@ -26,9 +26,9 @@ function NotificationListController($timeout, $rootScope){
     function showNotification(notification){
         self.model.notifications.push(notification);
 
-        $timeout(10000).then(()=>{
-            removeNotification(notification)
-        });
+            // $timeout(10000).then(()=>{
+            //     removeNotification(notification)
+            // });
     }
 
     function removeNotification(notification){

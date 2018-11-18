@@ -94,43 +94,4 @@ function MovieListController(TmdbService, $q, $scope){
         }
         return $q.reject('Fetch in progress.');
     }
-
-
-
-
-    // this.generatePages = generatePages;
-
-
-    // /**
-    //  * Returns 5 numbers representing the current page pagination
-    //  * The list will always have at most 5 numbers,
-    //  * @param {TmdbListResponse} tmdbListResponse A TMDB API movie list response
-    //  * @returns {number[]} The numbers to use for pagination
-    //  */
-    // function generatePages(tmdbListResponse){
-    //     if(tmdbListResponse){
-    //         const page_list = [];
-    //         const current_page = tmdbListResponse.page;
-    //         const total_pages = tmdbListResponse.total_pages;
-    //
-    //         if(current_page <= 3){
-    //             for(let count = 1; count <= total_pages && count <= 5; count++){
-    //                 page_list.push(count);
-    //             }
-    //         } else{
-    //             let remaining_pages = 5;
-    //
-    //             for(let count = current_page; count <= total_pages && page_list.length < 3; count++){
-    //                 page_list.push(count);
-    //                 remaining_pages--;
-    //             }
-    //             for(let count = page_list[0] - 1; count > 0 && remaining_pages > 0; count--){
-    //                 page_list.unshift(count);
-    //                 remaining_pages--;
-    //             }
-    //         }
-    //
-    //         return page_list;
-    //     }
-    // }
 }

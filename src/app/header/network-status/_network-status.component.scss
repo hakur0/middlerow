@@ -1,0 +1,13 @@
+.c-network-status {
+  display: block;
+}
+
+.c-network-status__info {
+  margin: $size-header-height 0 -#{$size-header-height};
+  background: $color-accent;
+  color: #fff;
+  text-align: center;
+  padding: .75rem 1rem;
+  font-family: $font-pridi;
+  font-size: 16px;
+}

@@ -5,6 +5,10 @@
   right: 0;
   padding: 2rem;
   z-index: 1;
+
+  @include media(xs){
+    padding: 1rem;
+  }
 }
 
 .c-notification {
@@ -14,7 +18,7 @@
   background: hsla(345, 100%, 83%, 1);
   border: 2px solid hsla(344, 80%, 65%, 1);
   border-radius: $size-border-radius;
-  max-width: 20vw;
+  max-width: 30rem;
   box-shadow: 0 8px 60px -10px hsla(346, 100%, 51%, 0.68);
   margin-bottom: 1rem;
 

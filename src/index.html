@@ -28,7 +28,8 @@
     <script src="app/core/tmdb.service.js"></script>
 
     <script src="app/header/header.component.js"></script>
-    <script src="app/header/header.controller.js"></script>
+    <script src="app/header/network-status/network-status.component.js"></script>
+    <script src="app/header/network-status/network-status.controller.js"></script>
     <script src="app/header/searchbar/searchbar.component.js"></script>
     <script src="app/header/searchbar/searchbar.controller.js"></script>
 
@@ -51,6 +52,7 @@
 <body>
     <notification-list class="c-notification-list"></notification-list>
     <app-header class="o-header"></app-header>
+    <network-status class="c-network-status"></network-status>
     <div class="o-content" ui-view></div>
     <footer>
         <!--Google Fonts-->

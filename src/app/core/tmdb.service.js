@@ -1,8 +1,8 @@
 angular.module('middlerow').service('TmdbService', TmdbService);
 
-TmdbService.$inject = ['tmdbApiUrl', 'tmdbApiKey', '$http', '$httpParamSerializer', 'MovieFactory'];
+TmdbService.$inject = ['tmdbApiUrl', 'tmdbApiKey', '$http', '$httpParamSerializer', 'MovieFactory', '$q'];
 
-function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieFactory){
+function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieFactory, $q){
     /**
      * @typedef {Object} TmdbListResponse
      * @property {number} page The current page
@@ -10,6 +10,8 @@ function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieF
      * @property {number} total_pages The total number of pages
      * @property {Movie[]} results An array of Movie objects
      */
+
+    const self = this;
 
 
     /**
@@ -74,14 +76,7 @@ function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieF
      * @returns {Promise|TmdbListResponse} A $http promise that resolves into a TmdbListResponse object
      */
     this.getPopularMovies = (page = 1)=>{
-        return $http.get(_constructUrl('movie/popular', {page: page})).then((response)=>{
-            if(response.data.results.length){
-                const data = response.data;
-                data.results = _generateMovieList(data.results);
-                return data;
-            }
-            return response.data;
-        });
+        return self.getPaginatedMovieList('movie/popular', page);
     };
 
     /**
@@ -99,6 +94,8 @@ function TmdbService(tmdbApiUrl, tmdbApiKey, $http, $httpParamSerializer, MovieF
                 return data;
             }
             return response.data;
+        }).catch(()=>{
+            $q.reject('There was an error trying to fetch a movie list. Try again.');
         });
     };
 

@@ -24,7 +24,7 @@
     "gulp-useref": "^3.1.6",
     "gulp-util": "^3.0.8",
     "gulp-real-favicon": "^0.3.0",
-    "gulp-uglify-es": "^1.0.4"
+    "gulp-uglify-es": "^1.0.4",
     "workbox-build": "^3.6.3"
   }
 }

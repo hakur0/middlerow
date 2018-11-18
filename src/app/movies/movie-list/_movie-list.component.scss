@@ -38,6 +38,11 @@
     border-bottom: 1px dashed hsla(241, 75%, 86%, 1);
     width: calc(100% - 60px);
     line-height: 14px;
+
+    @include media(xs){
+      width: 100%;
+      left: 0;
+    }
   }
 }
 
@@ -85,6 +90,10 @@
     & > .o-movie-list__movie__title{
       opacity: 1;
     }
+  }
+
+  @include media(xs){
+    width: 100%;
   }
 }
 

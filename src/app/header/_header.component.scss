@@ -27,13 +27,8 @@
   font-weight: 500;
   color: $color-main;
   cursor: pointer;
-}
 
-.o-header__action {
-    padding-left: 2em;
-    font-family: $font-pridi;
-    color: $color-main;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
+  @include media(xs){
+    display: none;
+  }
 }

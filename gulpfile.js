@@ -19,8 +19,8 @@ const FAVICON_DATA_FILE = 'faviconData.json';
 gulp.task('generate-favicon', function(done) {
     realFavicon.generateFavicon({
         masterPicture: 'src/images/icon/logo.png',
-        dest: 'dist',
-        iconsPath: '/',
+        dest: 'src',
+        iconsPath: '',
         design: {
             ios: {
                 pictureAspect: 'backgroundAndMargin',
@@ -99,15 +99,18 @@ gulp.task('sassify', function(){
 });
 
 gulp.task('minify', ['clean', 'sassify'], function(){
-    const indexHtmlFilter = filter(['**/*', '!**/index.html'], { restore: true });
+    const indexFilter = filter(['**/*', '!**/index.html'], { restore: true });
+    const indexOnlyFilter = filter(['!**/*', '**/index.html'], { restore: true });
 
     return gulp.src('src/index.html')
-               .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
                .pipe(useref().on('error', gutil.log))
                .pipe(gulpIf('*.js', uglify())).on('error', function(err){gutil.log(gutil.colors.red('[Error]'), err.toString());})
-               .pipe(indexHtmlFilter)
+               .pipe(indexFilter)
                .pipe(rev())
-               .pipe(indexHtmlFilter.restore)
+               .pipe(indexFilter.restore)
+               .pipe(indexOnlyFilter)
+               .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
+               .pipe(indexOnlyFilter.restore)
                .pipe(revReplace())
                .pipe(gulpIf('*.css', cssnano({ zindex: false })))
                .pipe(gulp.dest('dist'));
@@ -117,6 +120,11 @@ gulp.task('copy-assets', ['minify'], function(){
     const assets = [
         'src/app/**/*.html',
         'src/images/**/*',
+        'src/*.png',
+        'src/browserconfig.xml',
+        'src/favicon.ico',
+        'src/safari-pinned-tab.svg',
+        'src/site.webmanifest',
         '!src/images/icon/**/*'
     ];
 
@@ -130,7 +138,7 @@ gulp.task('service-worker', ['copy-assets'], () => {
         swDest: 'dist/sw.js',
         globDirectory: 'dist',
         globPatterns: [
-            '**\/*.{js,css,html,svg}',
+            '**\/*.{js,css,html,svg,ico}',
         ]
     }).then(({count, size, warnings}) => {
         warnings.forEach(console.warn);

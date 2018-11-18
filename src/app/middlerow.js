@@ -1,5 +1,4 @@
 angular.module('middlerow', ['ui.router', 'vs-repeat', 'ngAnimate']);
-angular.module('middlerow').config(middleRowConfig);
 
 // Initializes the Cache Service Worker
 if('serviceWorker' in navigator){
@@ -9,6 +8,8 @@ if('serviceWorker' in navigator){
 }
 
 // App config
+angular.module('middlerow').config(middleRowConfig);
+
 middleRowConfig.$inject = ['$httpProvider', '$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
 function middleRowConfig($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider){
@@ -48,4 +49,20 @@ function middleRowConfig($httpProvider, $stateProvider, $urlRouterProvider, $loc
                 }
             }
         })
+}
+
+// Configurations that must live inside a run block
+angular.module('middlerow').run(middleRowRun);
+
+middleRowRun.$inject = ['$transitions', '$document'];
+
+function middleRowRun($transitions, $document){
+    // Scroll the viewport to top when transitioning routes
+    $transitions.onSuccess({}, (transition)=>{
+        // Only scroll if the route transitioned to a different state
+        // Otherwise, simply updating the page URL would scroll the view
+        if(transition.from() !== transition.to()){
+            $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
+        }
+    });
 }

@@ -1,11 +1,15 @@
 .o-search-bar {
   position: relative;
   flex-grow: 1;
-  padding-left: 2em;
+  padding-left: 2rem;
 
   &:active .o-search-bar__content.is-visible{
     opacity: 1;
     pointer-events: auto;
+  }
+
+  @include media(xs){
+    padding-left: 1rem;
   }
 }
 
@@ -18,7 +22,7 @@
   width: 36px;
   background: url(/images/mg-b.svg);
   top: 3px;
-  left: calc(2em + 3px);
+  left: calc(2rem + 3px);
   display: block;
   pointer-events: none;
   opacity: .6;
@@ -26,6 +30,10 @@
   &.is-loading{
     opacity: 1;
     background: url(/images/sp-b.svg);
+  }
+
+  @include media(xs){
+    left: calc(1rem + 3px);  
   }
 }
 
